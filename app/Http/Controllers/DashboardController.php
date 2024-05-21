@@ -12,14 +12,37 @@ class DashboardController extends Controller
         $ideas = idea::orderBy('created_at', 'DESC');
 
 
-        if(request()->has('search')){
-            $ideas->$ideas->where('content','like','%' . request()->get('search',''). '%');
-                //in SQL search * from id = id just like that.
+        if (request()->has('search')) {
+
+            // if (true) =  $ideas->where( filter ) ;
+
+            $ideas = $ideas->where('content', 'like', '%' . request()->get('search', '') . '%' );
+
+            //in SQL search * from id = id just like that.
+
+            /*    in     ________________________________________________________________________________
+                        | $ideas=$ideas->where('content','like','%' . request()->get('search','') . '%'); |
+                        |----1----2--------3-------4-------5-----6--7---8---------9----10-----11--12-13---|
+
+                |++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+                |    4.content              =  is the name of the database column.                                                   |
+                |    5.like                 =  This is a SQL operator 'LIKE' operator search for a specified                         |
+                |                               pattern in a column. (conjunction with wildcard characters.)                         |
+                |    8.request()            =  Laravel helper function                                                               |
+                |    9.->get('search', ''): =  value of the 'search' parameter from  query string of  HTTP request.                  |
+                |                               If the 'search' parameter is not present, it defaults to an empty string ('').       |
+                |    6,7,12,13              =  '%' . ... . '%':                                                                      |
+                |                                                                                                                    |
+                |        1.(percent) % = SQL wildcards that match zero or more characters.                                           |
+                |        ( By surrounding the search term with %, you are performing a "contains" search,)                           |
+                |                                                                                                                    |
+                | MEANING:-  it will match ANY record where the "content" column includes the search term anywhere within its text.  |
+                |____________________________________________________________________________________________________________________|
+                */
         }
 
 
-
-        return view('dashboard', ['ideas'=> $ideas ->paginate(5) ]);
+        return view('dashboard', ['ideas' => $ideas->paginate(5)]);
 
 
 

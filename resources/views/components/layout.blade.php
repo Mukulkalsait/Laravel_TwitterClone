@@ -24,7 +24,7 @@
     <div class="container py-4">
 
         {{-- Containt --}}
-        @yield('content')
+        {{ $slot}}
         {{-- this @yield('content') will take the "content" named data at THIS PLACE... when this whole page data is fatched by other page ...  --}}
 
 

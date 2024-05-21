@@ -29,8 +29,8 @@ use Illuminate\Support\Facades\Route;
 // view = inside of resources/views  (in place of view you can add <h1>H1</h1> real HTML)
 //  location ==> views/users/profile.blade.php
 //__________________________________________________________ end __________________________________________________________|
-*/
 
+ */
 
 
 
@@ -79,8 +79,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[ DashboardController::class ,'index'])->name('dashboard');
+Route::get('/1', function () {return view('info');});
 /*  index()[indside DashboardController] ===>
-          redirect to dashboard + fetch ideas from IDEA MODEL (coontent + Likes)
+          redirect to dashboard + fetch ideas from IDEA MODEL (coontent + Likes)my
     & (moedl<-database)+orderd by dreated_at.
 ________________________________________________________________________________|
 */
